@@ -45,7 +45,18 @@ footer { background: #1b263b; text-align: center; padding: 24px; color: #6b7a90;
 <div class="hero" id="home">
   <h1>HTR <span>启明轨道</span></h1>
   <p>欢迎来到 HTR！这里有你想知道的任何关于 HTR 的东西！</p>
-  <a class="btn-join" href="#join">加入我们</a>
+  <a class="btn-join" href="https://qm.qq.com/" target="_blank">加入我们</a>
+  <script>
+  function copyQQ(){
+    var qq = "1079788091";
+    var t = document.createElement("textarea");
+    t.value = qq; document.body.appendChild(t); t.select();
+    try{ document.execCommand("copy"); }catch(e){}
+    document.body.removeChild(t);
+    document.getElementById("qqnum").textContent = qq + "（已复制！去 QQ 搜索群号加入）";
+    document.getElementById("join").scrollIntoView();
+  }
+  </script>
 </div>
 
 <section id="join">
@@ -94,19 +105,19 @@ footer { background: #1b263b; text-align: center; padding: 24px; color: #6b7a90;
       <p style="color:#a8b8cc; margin-top:6px; font-size:13px">承建线路：1号线、2号线</p>
     </div>
     <div class="card">
-      <div class="lbl">古瑞</div>
+      <div class="lbl">古瑞建筑有限公司</div>
       <p style="color:#a8b8cc; margin-top:10px; font-size:13px">承建线路：11号线</p>
     </div>
     <div class="card">
-      <div class="lbl">谢人</div>
+      <div class="lbl">谢人集团有限公司</div>
       <p style="color:#a8b8cc; margin-top:10px; font-size:13px">承建线路：5号线</p>
     </div>
   </div>
   <h2 style="margin-top:40px">重要成员及服务器内身份</h2>
   <div class="trains">
-    <span class="train">ysh_ymlgdxxs 我</span><span class="train">Ans-10 腐竹</span>
-    <span class="train">谢 管理员</span><span class="train">JCrispin 管理员</span>
-    <span class="train">上连轨道 管理员</span>
+    <span class="train">ysh_ymlgdxxs</span><span class="train">Ans-10</span>
+    <span class="train">谢</span><span class="train">JCrispin</span>
+    <span class="train">上连轨道</span>
   </div>
 </section>
 
