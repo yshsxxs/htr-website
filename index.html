@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTR 启明轨道 - 官方网站</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; background: #0d1b2a; color: #e0e6ed; }
+.topbar { background: #1b263b; padding: 12px 40px; display: flex; align-items: center; gap: 20px; position: sticky; top: 0; z-index: 100; }
+.logo { background: #e63946; color: #fff; font-weight: 900; padding: 6px 14px; border-radius: 8px; font-size: 22px; letter-spacing: 2px; }
+.topbar nav a { color: #a8b8cc; text-decoration: none; margin-left: 22px; font-size: 15px; }
+.topbar nav a:hover { color: #fff; }
+.hero { background: linear-gradient(135deg, #1b263b 0%, #0d1b2a 60%, #1a3a5c 100%); padding: 80px 40px 60px; text-align: center; }
+.hero h1 { font-size: 52px; color: #fff; letter-spacing: 6px; }
+.hero h1 span { color: #e63946; }
+.hero p { margin-top: 16px; color: #a8b8cc; font-size: 18px; }
+.hero .line { display: inline-block; margin-top: 24px; background: #2a9d8f; color: #fff; padding: 8px 28px; border-radius: 20px; font-weight: bold; }
+section { max-width: 1100px; margin: 50px auto; padding: 0 30px; }
+h2 { font-size: 28px; color: #fff; margin-bottom: 20px; border-left: 5px solid #e63946; padding-left: 14px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.card { background: #16263c; border-radius: 12px; padding: 22px; border: 1px solid #25405e; }
+.card h3 { color: #2a9d8f; margin-bottom: 10px; }
+.card p { color: #a8b8cc; font-size: 14px; line-height: 1.8; }
+.mapbox { background: #16263c; border-radius: 12px; padding: 20px; border: 1px solid #25405e; }
+.mapbox img { width: 100%; border-radius: 8px; }
+.trainlist { display: flex; gap: 16px; flex-wrap: wrap; }
+.train { background: #16263c; border: 1px solid #25405e; border-radius: 10px; padding: 14px 20px; }
+.train b { color: #e9c46a; }
+footer { background: #1b263b; text-align: center; padding: 24px; color: #6b7a90; font-size: 13px; margin-top: 60px; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo">HTR</div>
+  <nav>
+    <a href="#home">首页</a>
+    <a href="#map">线路图</a>
+    <a href="#trains">列车</a>
+    <a href="#about">关于</a>
+  </nav>
+</div>
+
+<div class="hero" id="home">
+  <h1>HTR <span>启明轨道</span></h1>
+  <p>Qiming Rail — 启明星指引的轨道之路</p>
+  <div class="line">HTR LINE · 连接每一站</div>
+</div>
+
+<section id="map">
+  <h2>线路图</h2>
+  <div class="mapbox">
+    <img src="20260820-1427-png.png" alt="HTR 线路图">
+  </div>
+</section>
+
+<section id="trains">
+  <h2>列车家族</h2>
+  <div class="trainlist">
+    <div class="train"><b>CR200J 复兴号</b><br>城际动车组</div>
+    <div class="train"><b>CR400AF</b><br>高速动车组</div>
+    <div class="train"><b>JR E235</b><br>山手线列车</div>
+    <div class="train"><b>北京地铁</b><br>通勤列车</div>
+    <div class="train"><b>上海地铁</b><br>通勤列车</div>
+    <div class="train"><b>郑州地铁</b><br>通勤列车</div>
+  </div>
+</section>
+
+<section id="about">
+  <h2>关于 HTR</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>线路特色</h3>
+      <p>HTR 线纵贯鹤州，连接双村、山水庄园、国际中心、地铁大厦等核心站点。全程高架+地下混合，欣赏鹤州城市天际线。</p>
+    </div>
+    <div class="card">
+      <h3>建设方</h3>
+      <p>线路由 Guru Construction Co., Ltd.（古瑞建筑有限公司）承建，Xieren Group（谢人集团）提供支持。</p>
+    </div>
+    <div class="card">
+      <h3>换乘站</h3>
+      <p>国际中心站可换乘 1 号线、2 号线；地铁大厦站接驳轻轨；山手线、村际快速在此交汇。</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 HTR 鹤州轨道交通 · Powered by Guru Construction Co., Ltd. · 本网站为 MC 服务器粉丝站
+</footer>
+
+</body>
+</html>
