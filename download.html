@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小姚软件 · Yao Software</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,"Microsoft YaHei","PingFang SC",sans-serif;
+       background:#0f172a; color:#e2e8f0; min-height:100vh; padding:48px 20px; }
+.wrap { max-width:1000px; margin:0 auto; }
+h1 { font-size:32px; letter-spacing:1px; color:#fff; }
+h1 span { color:#38bdf8; }
+.sub { color:#94a3b8; margin:10px 0 6px; font-size:15px; }
+.meta { color:#64748b; font-size:13px; margin-bottom:36px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; }
+.card { background:#1e293b; border:1px solid #334155; border-radius:14px; padding:24px;
+        display:flex; flex-direction:column; transition:.2s; }
+.card:hover { border-color:#38bdf8; transform:translateY(-3px); }
+.card .name { font-size:19px; font-weight:600; color:#fff; }
+.card .en { font-size:12px; color:#64748b; margin-bottom:10px; }
+.card .desc { font-size:13.5px; color:#94a3b8; line-height:1.7; flex:1; }
+.tag { display:inline-block; font-size:11px; padding:2px 8px; border-radius:6px;
+       background:#0c4a6e; color:#7dd3fc; margin-right:6px; margin-bottom:8px; }
+.size { font-size:12px; color:#475569; margin:12px 0 10px; }
+.btn { display:block; text-align:center; text-decoration:none; padding:11px;
+       border-radius:9px; font-size:14px; font-weight:600; transition:.2s; }
+.btn.p { background:#0ea5e9; color:#fff; }
+.btn.p:hover { background:#38bdf8; }
+.btn.s { background:transparent; border:1px solid #334155; color:#94a3b8;
+         margin-top:8px; font-size:12.5px; font-weight:400; }
+.btn.s:hover { border-color:#0ea5e9; color:#7dd3fc; }
+.note { margin-top:36px; padding:18px 22px; background:#1e293b; border-left:3px solid #0ea5e9;
+        border-radius:8px; font-size:13px; color:#94a3b8; line-height:1.9; }
+.note b { color:#e2e8f0; }
+footer { margin-top:44px; text-align:center; color:#475569; font-size:12.5px; }
+code { background:#0f172a; padding:1px 6px; border-radius:4px; color:#7dd3fc; font-size:12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>小姚软件 <span>Yao Software</span></h1>
+  <div class="sub">自研工具套装 · 免安装 · 单文件运行</div>
+  <div class="meta">版本 v4.03 &nbsp;|&nbsp; 更新于 2026-09-12 &nbsp;|&nbsp; 作者 Jason Yao</div>
+
+  <div class="grid">
+    <!-- CyberToolkit -->
+    <div class="card">
+      <div class="name">赛博工具包 CyberToolkit</div>
+      <div class="en">v4.03 · Windows</div>
+      <div>
+        <span class="tag">40 模块</span><span class="tag">聊天</span>
+        <span class="tag">Office</span><span class="tag">视频播放器</span>
+      </div>
+      <div class="desc">
+        集成 40 个功能模块的整活工具包：跨网络聊天、作业统计器（查谁没交）、
+        小姚 Office（文档/演示/绘图）、视频播放器、监控查看、抢号助手、广播录音等。
+        数据保存在 exe 内部，U 盘即可带走。
+      </div>
+      <div class="size">约 127 MB · 免安装 · 双击运行</div>
+      <a class="btn p" href="https://github.com/yshsxxs/htr-website/releases/download/v4.03/CyberToolkit_v4.03.exe">下载 CyberToolkit</a>
+      <a class="btn s" href="https://gh-proxy.com/https://github.com/yshsxxs/htr-website/releases/download/v4.03/CyberToolkit_v4.03.exe">国内加速下载</a>
+    </div>
+
+    <!-- YaoOffice -->
+    <div class="card">
+      <div class="name">小姚 Office</div>
+      <div class="en">v1.0 · Windows</div>
+      <div><span class="tag">文档</span><span class="tag">演示</span><span class="tag">绘图</span></div>
+      <div class="desc">
+        自研办公套件，独立格式：文档 <code>.sowd</code>、演示 <code>.sopt</code>（支持 F5 全屏放映）、
+        绘图 <code>.soe</code>（自由绘制/形状/文字）。轻量、免安装、启动快。
+      </div>
+      <div class="size">约 11 MB · 免安装 · 双击运行</div>
+      <a class="btn p" href="https://github.com/yshsxxs/htr-website/releases/download/v4.03/YaoOffice_v1.0.exe">下载 小姚 Office</a>
+      <a class="btn s" href="https://gh-proxy.com/https://github.com/yshsxxs/htr-website/releases/download/v4.03/YaoOffice_v1.0.exe">国内加速下载</a>
+    </div>
+
+    <!-- APK -->
+    <div class="card">
+      <div class="name">小姚聊天（安卓）</div>
+      <div class="en">v1.0 · Android</div>
+      <div><span class="tag">跨网络</span><span class="tag">微信风</span><span class="tag">免注册</span></div>
+      <div class="desc">
+        手机聊天 App：输入昵称和房间名即可和同学聊天，跨网络、免注册、不需要同一 WiFi。
+        也可直接用网页版。
+      </div>
+      <div class="size">132 KB · 安卓 5.0+ · 允许未知来源安装</div>
+      <a class="btn p" href="https://github.com/yshsxxs/htr-website/releases/download/v4.03/YaoChat_v1.0.apk">下载 APK</a>
+      <a class="btn s" href="chat.html">打开网页版聊天</a>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>使用提示</b><br>
+    1. 下载后双击即可运行，无需安装。<br>
+    2. 若浏览器提示"不常下载的文件"，选择"保留"即可。<br>
+    3. 国内直连 GitHub 较慢时，请点"国内加速下载"。<br>
+    4. 手机安装 APK 需在设置中允许"未知来源应用"。<br>
+    5. 软件数据保存在程序内部，可随文件一起拷贝到 U 盘。
+  </div>
+
+  <footer>Yao Software · 作者 Jason Yao · 学习与娱乐用途</footer>
+</div>
+</body>
+</html>
