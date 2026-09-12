@@ -3,118 +3,216 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>小姚聊天 ChatBox</title>
+<title>小姚聊天 YaoChat</title>
 <style>
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-body { font-family:-apple-system,"Microsoft YaHei","PingFang SC",sans-serif; background:#EDEDED; height:100vh; display:flex; flex-direction:column; }
-/* 登录页 */
-#login { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px; }
-#login h1 { font-size:30px; color:#07C160; margin-bottom:8px; }
-#login p.sub { color:#999; font-size:13px; margin-bottom:36px; }
-#login input { width:100%; max-width:320px; padding:13px 15px; margin:7px 0; border:1px solid #ddd; border-radius:8px; font-size:16px; background:#fff; }
-#login button { width:100%; max-width:320px; padding:14px; margin-top:20px; background:#07C160; color:#fff; border:0; border-radius:8px; font-size:17px; font-weight:600; }
-#login .tip { margin-top:22px; color:#aaa; font-size:12px; text-align:center; line-height:1.7; }
-/* 聊天页 */
-#chat { display:none; flex:1; flex-direction:column; height:100vh; }
-#top { background:#4C4C4C; color:#fff; padding:13px 15px; display:flex; justify-content:space-between; align-items:center; flex-shrink:0; }
-#top .room { font-size:16px; font-weight:600; }
-#top .st { font-size:12px; color:#FFD54F; }
-#msgs { flex:1; overflow-y:auto; padding:12px 10px; -webkit-overflow-scrolling:touch; }
-.row { margin-bottom:13px; display:flex; flex-direction:column; }
-.row.me { align-items:flex-end; }
-.row.other { align-items:flex-start; }
-.meta { font-size:11px; color:#999; margin-bottom:3px; padding:0 4px; }
-.bubble { max-width:76%; padding:9px 13px; border-radius:8px; font-size:15px; line-height:1.45; word-wrap:break-word; background:#fff; color:#111; }
-.row.me .bubble { background:#95EC69; }
-.bubble.sys { background:#E0E0E0; color:#666; font-size:13px; }
-#bottom { flex-shrink:0; background:#F7F7F7; padding:9px 10px; display:flex; gap:9px; align-items:center; }
-#bottom input { flex:1; padding:11px 13px; border:1px solid #ddd; border-radius:20px; font-size:15px; background:#fff; }
-#bottom button { background:#07C160; color:#fff; border:0; border-radius:20px; padding:11px 20px; font-size:15px; font-weight:600; }
+body { font-family:-apple-system,"Microsoft YaHei","PingFang SC",sans-serif; background:#0b1220;
+       color:#e6edf3; height:100vh; overflow:hidden; }
+.hide { display:none !important; }
+
+/* ---------- 登录/注册 ---------- */
+#auth { height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:28px; }
+#auth .logo { font-size:31px; font-weight:700; color:#22d38a; margin-bottom:6px; }
+#auth .sub { color:#5b7392; font-size:12.5px; margin-bottom:26px; }
+.box { width:100%; max-width:360px; background:#121b2e; border:1px solid #1e2b45; border-radius:15px; padding:22px; }
+.box h2 { font-size:16px; margin-bottom:16px; color:#9fe8c0; }
+.box label { display:block; font-size:12px; color:#5b7392; margin:11px 0 5px; }
+input { width:100%; background:#0b1220; border:1px solid #24354f; color:#e6edf3; border-radius:9px;
+        padding:11px 13px; font-size:15px; font-family:inherit; outline:none; }
+input:focus { border-color:#22d38a; }
+button { background:#12864f; color:#eafff4; border:0; border-radius:9px; padding:12px 16px; font-size:15px;
+         font-weight:600; cursor:pointer; font-family:inherit; }
+button:active { background:#1aa863; }
+button.ghost { background:#1a2740; color:#9fb3cc; }
+button.mini { padding:7px 12px; font-size:12.5px; border-radius:7px; }
+button.wide { width:100%; margin-top:16px; }
+.link { color:#22d38a; font-size:12.5px; text-align:center; margin-top:14px; cursor:pointer; }
+.tip { font-size:11px; color:#4a6480; line-height:1.75; margin-top:12px; }
+.err { color:#ff7b72; font-size:12.5px; margin-top:10px; min-height:17px; }
+
+/* ---------- 主界面 ---------- */
+#app { height:100vh; display:flex; flex-direction:column; }
+#top { background:#121b2e; border-bottom:1px solid #1e2b45; padding:11px 14px; display:flex;
+       align-items:center; gap:9px; flex-shrink:0; }
+#top .t { font-size:15.5px; font-weight:600; }
+#top .me { margin-left:auto; font-size:11.5px; color:#5b7392; }
+#views { flex:1; overflow-y:auto; -webkit-overflow-scrolling:touch; }
+.view { display:none; padding:12px; }
+.view.on { display:block; }
+#tabs { display:flex; background:#121b2e; border-top:1px solid #1e2b45; flex-shrink:0; }
+#tabs div { flex:1; text-align:center; padding:8px 2px; font-size:10.5px; color:#5b7392;
+            cursor:pointer; border-top:2px solid transparent; position:relative; }
+#tabs div.on { color:#22d38a; border-top-color:#22d38a; }
+#tabs div i { display:block; font-size:19px; font-style:normal; margin-bottom:1px; }
+#tabs .badge { position:absolute; top:3px; right:50%; margin-right:-26px; background:#e5484d; color:#fff;
+               font-size:9.5px; border-radius:9px; padding:1px 5px; min-width:15px; }
+
+.list-item { background:#121b2e; border:1px solid #1e2b45; border-radius:12px; padding:12px 14px;
+             margin-bottom:9px; display:flex; align-items:center; gap:11px; cursor:pointer; }
+.list-item:active { border-color:#22d38a; }
+.avatar { width:40px; height:40px; border-radius:11px; background:#1c3550; color:#8fd8ff; display:flex;
+          align-items:center; justify-content:center; font-size:16px; font-weight:700; flex-shrink:0; }
+.avatar.g { background:#1d4030; color:#7ef0a0; }
+.li-txt { flex:1; min-width:0; }
+.li-t { font-size:14.5px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.li-d { font-size:11.5px; color:#5b7392; margin-top:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.lock { font-size:10px; color:#22d38a; }
+.empty { text-align:center; color:#3f5872; font-size:12.5px; padding:40px 20px; line-height:1.9; }
+
+/* ---------- 聊天窗口 ---------- */
+#chatView { position:fixed; inset:0; background:#0b1220; display:flex; flex-direction:column; z-index:50; }
+#chatTop { background:#121b2e; border-bottom:1px solid #1e2b45; padding:11px 13px; display:flex;
+           align-items:center; gap:10px; flex-shrink:0; }
+#chatTop .b { color:#22d38a; font-size:19px; cursor:pointer; }
+#chatTop .n { font-size:15px; font-weight:600; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+#chatTop .k { font-size:11px; color:#22d38a; }
+#msgs { flex:1; overflow-y:auto; padding:13px; -webkit-overflow-scrolling:touch; }
+.msg { margin-bottom:12px; display:flex; flex-direction:column; }
+.msg.me { align-items:flex-end; }
+.msg .who { font-size:10px; color:#4a6480; margin-bottom:3px; }
+.bub { max-width:78%; padding:9px 12px; border-radius:11px; font-size:14px; line-height:1.5;
+       background:#182338; color:#dbe7f3; word-break:break-word; white-space:pre-wrap; }
+.msg.me .bub { background:#12864f; color:#eafff4; }
+.bub.sys { background:#141d2e; color:#5b7392; font-size:11.5px; text-align:center; max-width:100%; }
+.file-b { display:flex; align-items:center; gap:9px; }
+.file-b .fi { font-size:20px; }
+.file-b .fn { font-size:12.5px; }
+.file-b a { color:#8ff0c0; font-size:12px; }
+#inputBar { background:#121b2e; border-top:1px solid #1e2b45; padding:9px 11px; display:flex; gap:8px;
+            align-items:center; flex-shrink:0; }
+#inputBar input { flex:1; }
+.attach { background:#1a2740; color:#9fb3cc; border-radius:9px; padding:11px 13px; font-size:16px; cursor:pointer; }
+#chatStat { font-size:10.5px; color:#3f5872; text-align:center; padding:3px; }
 </style>
 </head>
 <body>
 
-<div id="login">
-  <h1>小姚聊天</h1>
-  <p class="sub">ChatBox · 像微信一样聊天</p>
-  <input id="nick" placeholder="你的昵称" value="">
-  <input id="room" placeholder="房间名（大家输一样的）" value="yao-class-chat">
-  <button onclick="enter()">进入聊天</button>
-  <div class="tip">同一个房间名就能互相聊天<br>跨网络 · 免费 · 不用 WiFi 密码</div>
-</div>
-
-<div id="chat">
-  <div id="top"><span class="room" id="roomName">-</span><span class="st" id="status">连接中…</span></div>
-  <div id="msgs"></div>
-  <div id="bottom">
-    <input id="msg" placeholder="说点什么…" onkeydown="if(event.key==='Enter')send()">
-    <button onclick="send()">发送</button>
+<!-- ================= 登录 / 注册 ================= -->
+<div id="auth">
+  <div class="logo">小姚聊天</div>
+  <div class="sub">端到端加密 · 跨网络 · 免服务器</div>
+  <div class="box">
+    <h2 id="authTitle">登录</h2>
+    <label>用户名</label>
+    <input id="au-user" placeholder="英文或数字, 3-16 位" autocomplete="off">
+    <label>密码</label>
+    <input id="au-pass" type="password" placeholder="至少 6 位, 别用别的密码" autocomplete="off">
+    <label id="nickLabel" class="hide">昵称</label>
+    <input id="au-nick" placeholder="显示名称, 如 小明" class="hide" autocomplete="off">
+    <div class="err" id="authErr"></div>
+    <button class="wide" id="authBtn">登 录</button>
+    <div class="link" id="authSwitch">还没有账号？点这里注册</div>
+    <div class="err" id="authOk" style="color:#22d38a"></div>
+    <div class="tip">
+      🔒 消息端到端加密：私聊用 ECDH 密钥协商，群聊用群口令——<b>服务器上只有密文</b>。<br>
+      ⚠️ 密码用于加密你的私钥，<b>忘记无法找回</b>（请记牢）。
+    </div>
+  </div>
+  <div class="tip" style="max-width:360px">
+    同一网络/不同网络都能聊 · 账号数据存本机（换设备可导出导入）
   </div>
 </div>
 
+<!-- ================= 主界面 ================= -->
+<div id="app" class="hide">
+  <div id="top">
+    <span class="t">小姚聊天</span>
+    <span class="me" id="meName"></span>
+  </div>
+
+  <div id="views">
+    <!-- 聊天列表 -->
+    <div class="view on" id="v-chats">
+      <div id="chatList"></div>
+    </div>
+
+    <!-- 联系人 -->
+    <div class="view" id="v-contacts">
+      <div class="box" style="margin-bottom:12px">
+        <h2>添加好友</h2>
+        <div style="display:flex; gap:8px">
+          <input id="f-user" placeholder="输入对方用户名" style="flex:2">
+          <button class="mini" id="f-search" style="flex:1">搜索</button>
+        </div>
+        <div class="err" id="f-msg"></div>
+        <div id="f-found"></div>
+      </div>
+      <div class="box">
+        <h2>我的好友</h2>
+        <div id="friendList"></div>
+      </div>
+    </div>
+
+    <!-- 群组 -->
+    <div class="view" id="v-groups">
+      <div class="box" style="margin-bottom:12px">
+        <h2>创建 / 加入群</h2>
+        <label>群名称（如 三年二班）</label>
+        <input id="g-name" placeholder="群名称">
+        <label>群口令（成员必须相同才能看懂消息）</label>
+        <input id="g-pass" placeholder="例如 小姚班级2026">
+        <button class="wide" id="g-create">创建 / 加入</button>
+        <div class="err" id="g-msg"></div>
+      </div>
+      <div class="box">
+        <h2>我的群</h2>
+        <div id="groupList"></div>
+      </div>
+    </div>
+
+    <!-- 我 -->
+    <div class="view" id="v-me">
+      <div class="box" style="margin-bottom:12px">
+        <h2>我的账号</h2>
+        <div class="tip" id="meInfo"></div>
+      </div>
+      <div class="box" style="margin-bottom:12px">
+        <h2>账号备份（换手机用）</h2>
+        <div class="tip">导出后保存这个文件，换设备时导入即可（含加密私钥）。</div>
+        <div style="display:flex; gap:8px; margin-top:10px">
+          <button class="mini ghost" id="btn-export" style="flex:1">导出账号</button>
+          <button class="mini ghost" id="btn-import" style="flex:1">导入账号</button>
+        </div>
+        <input type="file" id="importFile" class="hide" accept=".json">
+      </div>
+      <div class="box">
+        <h2>关于</h2>
+        <div class="tip">
+          小姚聊天 v2.0（加密版）· 作者 Jason Yao<br>
+          通信走公共 MQTT，消息 E2E 加密，请勿用于违法用途。
+        </div>
+        <button class="wide ghost" id="btn-logout">退出登录</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="tabs">
+    <div class="on" data-v="chats"><i>💬</i>聊天<span class="badge hide" id="bd-chats"></span></div>
+    <div data-v="contacts"><i>👥</i>联系人</div>
+    <div data-v="groups"><i>🏠</i>群组</div>
+    <div data-v="me"><i>⚙️</i>我</div>
+  </div>
+</div>
+
+<!-- ================= 聊天窗口 ================= -->
+<div id="chatView" class="hide">
+  <div id="chatTop">
+    <span class="b" id="chatBack">‹</span>
+    <span class="n" id="chatName"></span>
+    <span class="k" id="chatKind"></span>
+  </div>
+  <div id="msgs"></div>
+  <div id="chatStat"></div>
+  <div id="inputBar">
+    <span class="attach" id="btnFile">📎</span>
+    <input id="msgInput" placeholder="输入消息…" autocomplete="off">
+    <button id="btnSend">发送</button>
+  </div>
+  <input type="file" id="fileInput" class="hide">
+</div>
+
 <script src="mqtt.min.js"></script>
-<script>
-var client=null, nick="", room="", connected=false;
-var BROKER="wss://broker.emqx.io:8084/mqtt";
-
-function enter(){
-  nick=(document.getElementById("nick").value||"").trim()||"同学";
-  room=(document.getElementById("room").value||"").trim()||"yao-class-chat";
-  document.getElementById("login").style.display="none";
-  document.getElementById("chat").style.display="flex";
-  document.getElementById("roomName").textContent=room;
-  addMsg("系统","已进入房间「"+room+"」",false,true);
-  connect();
-}
-
-function connect(){
-  var st=document.getElementById("status");
-  try{
-    client=mqtt.connect(BROKER,{clientId:"yao_"+nick+"_"+Math.floor(Math.random()*99999),keepalive:30,reconnectPeriod:3000,connectTimeout:15000});
-    client.on("connect",function(){
-      connected=true; st.textContent="已连接"; st.style.color="#8BC34A";
-      client.subscribe("yaochat/"+room,{qos:1});
-    });
-    client.on("message",function(topic,payload){
-      try{
-        var d=JSON.parse(payload.toString());
-        if(d.nick===nick) return;
-        addMsg(d.nick,d.text,false,false);
-      }catch(e){}
-    });
-    client.on("error",function(e){ st.textContent="连接错误"; st.style.color="#FF5252"; });
-    client.on("offline",function(){ st.textContent="离线重连中…"; st.style.color="#FFD54F"; });
-    client.on("close",function(){ if(connected){st.textContent="重连中…";st.style.color="#FFD54F";} });
-  }catch(e){ st.textContent="失败:"+e.message; st.style.color="#FF5252"; }
-}
-
-function send(){
-  var el=document.getElementById("msg");
-  var text=(el.value||"").trim();
-  if(!text) return;
-  el.value="";
-  addMsg(nick,text,true,false);
-  if(client&&connected){
-    client.publish("yaochat/"+room,JSON.stringify({nick:nick,text:text}),{qos:1});
-  }else{
-    addMsg("系统","未连接服务器，消息未发送",false,true);
-  }
-}
-
-function addMsg(who,text,mine,sys){
-  var msgs=document.getElementById("msgs");
-  var d=new Date();
-  var t=("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2);
-  var row=document.createElement("div");
-  row.className="row "+(mine?"me":"other");
-  var meta=document.createElement("div");
-  meta.className="meta"; meta.textContent=who+"  "+t;
-  var b=document.createElement("div");
-  b.className="bubble"+(sys?" sys":""); b.textContent=text;
-  row.appendChild(meta); row.appendChild(b);
-  msgs.appendChild(row);
-  msgs.scrollTop=msgs.scrollHeight;
-}
-</script>
+<script src="crypto.js"></script>
+<script src="chat.js"></script>
 </body>
 </html>
